@@ -10,15 +10,15 @@ from IPython.display import Markdown
 
 # Used to securely store your API keycd
 #from google.colab import userdata
+GOOGLE_API_KEY="AIzaSyC0F96L7tARVV3XeeS5aVGYPF95eZ42WC8"
+
+gemini_api_key = os.environ["GOOGLE_API_KEY"]
+
+genai.configure(api_key = gemini_api_key)
 
 def to_markdown(text):
   text = text.replace('•', '  *')
   return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
-
-GOOGLE_API_KEY="AIzaSyC0F96L7tARVV3XeeS5aVGYPF95eZ42WC8"
-#GOOGLE_API_KEY=userdata.get('GOOGLE_API_KEY')
-
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 for modellist in genai.list_models():
   if 'generateContent' in modellist.supported_generation_methods:
