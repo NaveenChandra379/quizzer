@@ -10,15 +10,16 @@ from IPython.display import Markdown
 
 # Used to securely store your API keycd
 #from google.colab import userdata
-GOOGLE_API_KEY="AIzaSyC0F96L7tARVV3XeeS5aVGYPF95eZ42WC8"
-
-gemini_api_key = os.environ["GOOGLE_API_KEY"]
-
-genai.configure(api_key = gemini_api_key)
 
 def to_markdown(text):
   text = text.replace('•', '  *')
   return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
+
+#GOOGLE_API_KEY="AIzaSyC0F96L7tARVV3XeeS5aVGYPF95eZ42WC8"
+#GOOGLE_API_KEY=
+# userdata.get('GOOGLE_API_KEY')
+
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 for modellist in genai.list_models():
   if 'generateContent' in modellist.supported_generation_methods:
@@ -34,23 +35,26 @@ response = model.generate_content("I am looking for a mock paper for JEE, I don'
 print(response.text)
 
 
-# importing Flask and other modules
+from flask import Flask, render_template, request
 
-# Flask constructor
-#app = Flask(__name__) 
+app = Flask(__name__)
 
-# A decorator used to tell the application
-# which URL is associated function
-#@app.route('/', methods =["GET", "POST"])
-#def gfg():
+@app.route('/')
+def index():
+    return render_template('index.html')
 
+@app.route('/submit', methods=['POST'])
+def submit():
+    # Get data from the form
+    data_from_form = request.form['country']
+    data_from_form2 = request.form['exam']
 
+    # Do something with the data (your Python code)
+    # For example, print it to the console
+    print(f"Data from form: {data_from_form}{data_from_form2}")
 
-#	if request.method == "POST":
- #          department = request.form.get("department")
-  #         exam = request.form.get("exam") 
-   #     return "Generate mock paper for"+ department + exam
-	#return render_template("form.html")
+    # You can return a response if needed
+    return "Form submitted successfully!"
 
-#if __name__=='__main__':
- #  app.run()
+if __name__ == '__main__':
+    app.run(debug=True)
