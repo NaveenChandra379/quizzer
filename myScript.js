@@ -1,28 +1,70 @@
+const examOptions = {
+  'Engineering': {
+    'USA': ['SAT', 'ACT'],
+    'UK': ['IELTS', 'TOEFL'],
+    'India': ['JEE', 'GATE'],
+    'Germany': ['TU Berlin Entrance Exam', 'TestDaF'],
+    'Japan': ['JLPT', 'EJU'],
+    'France': ['TCF', 'DELF'],
+    'Australia': ['IELTS', 'PTE Academic'],
+    'Brazil': ['Celpe-Bras', 'TOEFL'],
+    'Canada': ['SAT Canada', 'IELTS Canada']
+  },
+  'Management': {
+    'USA': ['GMAT', 'GRE'],
+    'UK': ['GMAT', 'GRE'],
+    'India': ['CAT', 'XAT'],
+    'Germany': ['GMAT', 'GRE'],
+    'Japan': ['GMAT', 'GRE'],
+    'France': ['GMAT', 'GRE'],
+    'Australia': ['GMAT', 'GRE'],
+    'Brazil': ['GMAT', 'GRE'],
+    'Canada': ['GMAT Canada', 'GRE Canada']
+  },
+  'Language': {
+    'USA': ['TOEFL', 'IELTS'],
+    'UK': ['TOEFL', 'IELTS'],
+    'India': ['TOEFL', 'IELTS'],
+    'Germany': ['Goethe-Zertifikat', 'TestDaF'],
+    'Japan': ['JLPT', 'JFT-Basic'],
+    'France': ['TCF', 'DELF'],
+    'Australia': ['TOEFL', 'IELTS'],
+    'Brazil': ['CELPE-Bras', 'TOEFL'],
+    'Canada': ['TOEFL Canada', 'IELTS Canada']
+  },
+  'Medical': {
+    'USA': ['USMLE', 'NBDE'],
+    'UK': ['PLAB', 'MRCP'],
+    'India': ['NEET-PG', 'AIIMS-PG'],
+    'Germany': ['Approbation', 'GK'],
+    'Japan': ['JMLE', 'JHLE'],
+    'France': ['ECN', 'ENS'],
+    'Australia': ['AMC', 'ASC'],
+    'Brazil': ['USMLE', 'NBDE'],
+    'Canada': ['MCCEE', 'LMCC']
+  }
+};
+// Variable to store the selected course name
+let selectedCourseName = '';
+
 // Get the modal
 var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
-let btn = document.getElementById("myBtn");
-let btn1 = document.getElementById("myBtn1");
-let btn2 = document.getElementById("myBtn2");
-let btn3 = document.getElementById("myBtn3");
+// Get the buttons that open the modal
+let btns = document.querySelectorAll(".course button");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-btn1.onclick = function() {
-  modal.style.display = "block";
-}
-btn2.onclick = function() {
-  modal.style.display = "block";
-}
-btn3.onclick = function() {
-  modal.style.display = "block";
-}
+// When the user clicks a button, open the modal 
+btns.forEach(function(btn, index) {
+  btn.onclick = function() {
+    modal.style.display = "block";
+    const courses = ['Engineering', 'Management', 'Language', 'Medical'];
+    selectedCourseName = courses[index];
+    populateCountries(selectedCourseName);
+  }
+});
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -36,35 +78,38 @@ window.onclick = function(event) {
   }
 }
 
-  // Get the button and popup elements
-//   const button = document.getElementById('openPopup');
-//   const popup = document.getElementById('popupForm');
-
-//   // Add a click event listener to the button to show the popup
-//   button.addEventListener('click', function() {
-//     popup.style.display = 'block';
-//   });
-
-//   // Add form submission handler if needed
-//   const form = document.getElementById('ageDobForm');
-//   form.addEventListener('submit', function(event) {
-//     // You can add validation or other logic here before submission
-// console.log('Form submitted');
-//   });
-
-  // Exam options for each country
-// Exam options for each country
-const examOptions = {
-  'USA': ['SAT', 'ACT'],
-  'UK': ['IELTS', 'TOEFL'],
-  'Canada': ['IELTS', 'CELPIP']
-};
-
-// Function to populate exam options based on selected country
-function populateExams(country) {
+// Function to populate country dropdown based on selected course
+function populateCountries(course) {
+  const countrySelect = document.getElementById('country');
   const examSelect = document.getElementById('exam');
+  
+  // Clear previous options
+  countrySelect.innerHTML = '';
   examSelect.innerHTML = '';
-  const exams = examOptions[country];
+  
+  // Populate new options
+  const countries = Object.keys(examOptions[course]);
+  countries.forEach(country => {
+    const option = document.createElement('option');
+    option.text = country;
+    option.value = country;
+    countrySelect.add(option);
+  });
+  
+  // Populate exams based on the first country
+  const selectedCountry = countries[0];
+  populateExams(course, selectedCountry);
+}
+
+// Function to populate exam dropdown based on selected course and country
+function populateExams(course, country) {
+  const examSelect = document.getElementById('exam');
+  
+  // Clear previous options
+  examSelect.innerHTML = '';
+  
+  // Populate new options
+  const exams = examOptions[course][country];
   exams.forEach(exam => {
     const option = document.createElement('option');
     option.text = exam;
@@ -73,26 +118,8 @@ function populateExams(country) {
   });
 }
 
-// Get the button and popup elements
-const button = document.getElementById('openPopup');
-const popup = document.getElementById('myModal');
-
-// Add a click event listener to the button to show the popup
-button.addEventListener('click', function() {
-  popup.style.display = 'block';
-});
-
-// Event listener for country select change
+// Add event listener to country dropdown to dynamically update exams
 document.getElementById('country').addEventListener('change', function() {
   const selectedCountry = this.value;
-  populateExams(selectedCountry);
-});
-
-// Add form submission handler
-document.getElementById('examForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-  const country = document.getElementById('country').value;
-  const exam = document.getElementById('exam').value;
-  alert('Country: ' + country + ', Exam: ' + exam);
-  popup.style.display = 'none'; // Close the popup after submission
+  populateExams(selectedCourseName, selectedCountry);
 });
