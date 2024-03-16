@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Start Practicing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #1abc9c;
+      
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #56bba7;
+    }
+
+    .error-message {
+      color: red;
+      margin-bottom: 10px;
+    }
+
+    .signup-link {
+      color: #2202f0;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <div id="loginSignupForm">
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="loginSignup()">Login</button>
+      <p id="error" class="error-message"></p>
+      <p>Don't have an account? <a href="#" class="signup-link" onclick="showSignUpForm()">SignUp</a></p>
+    </div>
+    <div id="signupForm" style="display: none;">
+      <input type="text" id="newUsername" placeholder="New Username">
+      <input type="password" id="newPassword" placeholder="New Password">
+      <button onclick="signUp()">SignUp</button>
+      <p id="signupError" class="error-message"></p>
+      <p>Already have an account? <a href="#" class="signup-link" onclick="showLoginForm()">Login</a></p>
+    </div>
+  </div>
+
+  <script>
+    const users = [];
+    let isLoginVisible = true;
+
+    function loginSignup() {
+      if (isLoginVisible) {
+        // Login logic
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username && password) {
+          const existingUser = users.find(u => u.username === username);
+          if (existingUser) {
+            if (existingUser.password === password) {
+              alert('Login successful!');
+              document.getElementById('error').textContent = '';
+              document.getElementById('loginSignupForm').reset();
+            } else {
+              document.getElementById('error').textContent = 'Invalid password';
+            }
+          } else {
+            document.getElementById('error').textContent = 'User not found';
+          }
+        } else {
+          document.getElementById('error').textContent = 'Please enter both username and password';
+        }
+      }
+    }
+
+    function showSignUpForm() {
+      document.getElementById('loginSignupForm').style.display = 'none';
+      document.getElementById('signupForm').style.display = 'block';
+      isLoginVisible = false;
+    }
+
+    function showLoginForm() {
+      document.getElementById('signupForm').style.display = 'none';
+      document.getElementById('loginSignupForm').style.display = 'block';
+      isLoginVisible = true;
+    }
+
+    function signUp() {
+      const newUsername = document.getElementById('newUsername').value;
+      const newPassword = document.getElementById('newPassword').value;
+
+      if (newUsername && newPassword) {
+        if (users.some(u => u.username === newUsername)) {
+          document.getElementById('signupError').textContent = 'Username already exists';
+        } else {
+          users.push({ username: newUsername, password: newPassword });
+          alert('SignUp successful!');
+          document.getElementById('signupError').textContent = '';
+          document.getElementById('signupForm').reset();
+          showLoginForm();
+        }
+      } else {
+        document.getElementById('signupError').textContent = 'Please enter both username and password';
+      }
+    }
+  </script>
+</body>
+</html>
