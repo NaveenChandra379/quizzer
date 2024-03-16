@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Test Result</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .result {
+      margin-bottom: 20px;
+    }
+
+    .result h2 {
+      margin-bottom: 10px;
+    }
+
+    .result-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .result-list li {
+      margin-bottom: 10px;
+    }
+
+    .correct-answer {
+      color: green;
+    }
+
+    .wrong-answer {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Mock Test Result</h1>
+    <div class="result">
+      <h2>Your Score: <span id="score"></span></h2>
+      <h3>Correct Answers:</h3>
+      <ul id="correctAnswers" class="result-list"></ul>
+      <h3>Wrong Answers:</h3>
+      <ul id="wrongAnswers" class="result-list"></ul>
+    </div>
+  </div>
+
+  <script>
+    const userAnswers = ['A', 'B', 'C', 'D']; // Example: User's answers
+    const correctAnswers = ['A', 'B', 'C', 'D']; // Example: Correct answers
+
+    function calculateScore() {
+      let score = 0;
+      const correctList = document.getElementById('correctAnswers');
+      const wrongList = document.getElementById('wrongAnswers');
+
+      userAnswers.forEach((answer, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Question ${index + 1}: Your answer - ${answer}`;
+        
+        if (answer === correctAnswers[index]) {
+          listItem.classList.add('correct-answer');
+          score++;
+        } else {
+          listItem.classList.add('wrong-answer');
+          listItem.textContent += ` (Correct answer - ${correctAnswers[index]})`;
+        }
+
+        if (index < 2) {
+          correctList.appendChild(listItem);
+        } else {
+          wrongList.appendChild(listItem);
+        }
+      });
+
+      document.getElementById('score').textContent = `${score}/${userAnswers.length}`;
+    }
+
+    calculateScore();
+  </script>
+</body>
+</html>
