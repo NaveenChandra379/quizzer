@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Achievement</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+        }
+        .certificate-container {
+            width: 800px;
+            padding: 20px;
+            border: 10px solid #ddd;
+            background-color: #fff;
+            text-align: center;
+        }
+        .certificate-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .certificate-body {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .certificate-footer {
+            margin-top: 40px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="certificate-header">
+            Certificate of Achievement
+        </div>
+        <div class="certificate-body">
+            <p>This is to certify that</p>
+            <p><strong><span id="student-name">[Student Name]</span></strong></p>
+            <p>has succesfully qualified in the</p>
+            <p><strong><span id="exam-name">[Exam Name]</span></strong></p>
+            
+        </div>
+        <div class="certificate-footer">
+            <p>Date: <span id="date">[Date]</span></p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('student-name').textContent = localStorage.getItem('name');
+        document.getElementById('student-score').textContent = '80';
+        document.getElementById('exam-name').textContent =  localStorage.getItem('exam');
+        
+        document.getElementById('date').textContent = new Date().toLocaleDateString();
+    </script>
+</body>
+</html>
+

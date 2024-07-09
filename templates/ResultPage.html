@@ -50,6 +50,29 @@
     .wrong-answer {
       color: red;
     }
+
+    .not-attempted {
+      color: blue;
+    }
+
+    /* Styling for the button */
+    .home-btn, .certificate-btn {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .home-btn:hover {
+      background-color: #16a085;
+    }
   </style>
 </head>
 <body>
@@ -61,17 +84,30 @@
       <ul id="correctAnswers" class="result-list"></ul>
       <h3>Wrong Answers:</h3>
       <ul id="wrongAnswers" class="result-list"></ul>
+      <h3>Not Attempted:</h3>
+      <ul id="notAttempted" class="result-list"></ul>
     </div>
+    <button class="certificate-btn" style="display: none;" onclick="certificate()">Download Certificate</button>
+    <button class="home-btn" onclick="goToHomePage()">Go to Home Page</button>
   </div>
 
   <script>
-    const userAnswers = ['A', 'B', 'C', 'D']; // Example: User's answers
-    const correctAnswers = ['A', 'B', 'C', 'D']; // Example: Correct answers
-
     function calculateScore() {
+      const userAnswersString = localStorage.getItem('userAnswers');
+      const correctAnswersString = localStorage.getItem('correctAnswers');
+      
+      if (!userAnswersString || !correctAnswersString) {
+        console.error('User answers or correct answers are missing.');
+        return;
+      }
+
+      const userAnswers = JSON.parse(userAnswersString);
+      const correctAnswers = JSON.parse(correctAnswersString);
+
       let score = 0;
       const correctList = document.getElementById('correctAnswers');
       const wrongList = document.getElementById('wrongAnswers');
+      const notAttempted = document.getElementById('notAttempted');
 
       userAnswers.forEach((answer, index) => {
         const listItem = document.createElement('li');
@@ -79,23 +115,36 @@
         
         if (answer === correctAnswers[index]) {
           listItem.classList.add('correct-answer');
+          correctList.appendChild(listItem);
           score++;
+        } else if (answer == null) {
+          listItem.classList.add('not-attempted');
+          listItem.textContent += ` (Correct answer - ${correctAnswers[index]})`;
+          notAttempted.appendChild(listItem);
         } else {
           listItem.classList.add('wrong-answer');
           listItem.textContent += ` (Correct answer - ${correctAnswers[index]})`;
-        }
-
-        if (index < 2) {
-          correctList.appendChild(listItem);
-        } else {
           wrongList.appendChild(listItem);
         }
       });
 
       document.getElementById('score').textContent = `${score}/${userAnswers.length}`;
+      
+      localStorage.setItem('score', score);
+      if (score >= 5) {
+        document.querySelector('.certificate-btn').style.display = 'block';
+      }
     }
 
-    calculateScore();
+    function goToHomePage() {
+      window.location.href = '/';
+    }
+
+    function certificate() {
+      window.location.href = 'certificate.html';
+    }
+    
+    document.addEventListener('DOMContentLoaded', calculateScore);
   </script>
 </body>
 </html>

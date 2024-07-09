@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Online Learning Platform</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../static/styles.css">
+<link rel="icon" href="/images/paper.png">
 </head>
 <body>
 
@@ -13,8 +14,12 @@
   <a href="#exams">Exams</a>
   <a href="#countries">Countries</a>
   <a href="#contact">Contact</a>
-  <a href="#login" style="float:right">Log In</a>
-  <a href="#signup" style="float:right">Sign Up</a>
+  {% if not is_logged_in %}
+    <a href="login" style="float:right">Log In</a>
+    <a href="signup" style="float:right">Sign Up</a>
+  {% else %}
+    <button id = "logout" style="float:right;margin-top: 5px;">Log Out</a>
+  {% endif %}
 </div>
 
 <div class="header">
@@ -46,17 +51,6 @@
 </div>
 
 <!-- Popup form (hidden initially) -->
-
-<!-- <div id="popupForm" style="display:none;">
-  <form id="ageDobForm" action="nextpage.html">
-    <label for="age">Age:</label>
-    <input type="number" id="age" name="age" min="1" max="100"><br><br>
-    <label for="dob">Date of Birth:</label>
-    <input type="date" id="dob" name="dob"><br><br>
-    <input type="submit" value="Submit">
-  </form>
-</div> -->
-<!-- Popup form (hidden initially) -->
 <div id="popupForm" style="display:none;">
   <form id="examForm">
     <label for="country">Country:</label>
@@ -75,30 +69,16 @@
     <select id="examSelect" name="exam">
       <!-- Options will be populated dynamically -->
     </select><br><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" onsubmit="questionDisplayer()">
   </form>
 </div>
 
-<!-- The Modal -->
-<!-- <div id="myModal" class="modal">
-
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <form action="nextpage.html">
-      <label for="age">Age:</label>
-      <input type="number" id="age" name="age" min="0" max="100"><br><br>
-      <label for="dob">Date of Birth:</label>
-      <input type="date" id="dob" name="dob"><br><br>
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-</div> -->
 <!-- The Modal -->
 <div id="myModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <!-- Replaced Age and Date of Birth fields with Country and Exam dropdowns -->
-    <form id="examForm">
+    <form id="examForm" onsubmit="return submitForm()">
       <label for="country">Country:</label>
       <select id="country" name="country">
         <option value="USA">USA</option>
@@ -120,6 +100,7 @@
   </div>
 </div>
 
-<script src="myScript.js" defer></script>
+<script src="../static/myScript.js"></script>
+
 </body>
 </html>

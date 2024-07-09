@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Paper</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      text-align: center;
+      padding: 20px;
+      background-color: #1abc9c;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .questions,
+    .answers {
+      width: 48%;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    .questions h2,
+    .answers h2 {
+      text-align: center;
+    }
+
+    .questions .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .questions button,
+    .submit-btn {
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .questions button:hover,
+    .submit-btn:hover {
+      background-color: #16a085;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      font-size: 16px;
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .questions,
+      .answers {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+
+    #textbox-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    #textbox-container button {
+      margin: 2px;
+      height: 40px;
+      width: 40px;
+      background-color: #fff;
+      border-color: #8f8989;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #textbox-container button:hover {
+      background-color: #f1f1f1;
+      border-color: #5a5656;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1>Mock Paper: <span id="selectedExam"></span></h1>
+    <div>Time remaining: <span id="time">180:00</span></div>
+  </div>
+  
+  <div class="container">
+    <div class="questions">
+      <h2>Questions</h2>
+      <div id="question-container"></div>
+      <div class="navigation-buttons">
+        <button id="prev-btn">Previous</button>
+        <button id="next-btn">Next</button>
+      </div>
+      <input type="submit" value="Submit" class="submit-btn" onclick="openResultPage()">
+    </div>
+    <div class="answers">
+      <h2>Answers</h2>
+      <div id="textbox-container"></div>
+    </div>
+  </div>
+
+  <script>
+    let questions = [];
+    let currentQuestionIndex = 0;
+    let correctAnswers = []
+    let userAnswers = [];
+
+    for(let i = 0; i < 30 ;i++)
+    {
+      userAnswers[i] = null;
+    }
+
+
+    async function questionDisplay(id){
+        const urlParams = new URLSearchParams(window.location.search);
+        const country = urlParams.get('country');
+        const exam = urlParams.get('exam');
+        const token = localStorage.getItem('token')
+        
+
+      const url = `mockPage.html?country=${encodeURIComponent(country)}&exam=${encodeURIComponent(exam)}&id=${encodeURIComponent(id)}`;
+
+
+    fetch(url , {
+            method :'POST',
+            headers : {
+            'Content-Type': 'application/json' , 
+            'Authorization': token
+             },
+            body : JSON.stringify({country ,  exam , id})
+
+        })
+        .then(response => response.json())
+        .then(data => {
+            // console.log(data)
+            showQuestion(id - 1 , data)
+        })
+        .catch(error => console.log(error))
+      }
+
+      questionDisplay(currentQuestionIndex + 1);
+    
+
+    function showQuestion(index , data) {
+      const container = document.getElementById("question-container");
+      container.innerHTML = ''; // Clear previous question
+      const q = data;
+      const questionDiv = document.createElement("div");
+      correctAnswers[index] = q["correct_option"]
+      questionDiv.innerHTML = `
+        <p><strong>Question ${q["no"]}:</strong> ${q.question}</p>
+        <ul>
+          <li>
+            <label>
+              <input type="radio" name="question${q["no"]}" value="option1" onclick="saveAnswer(${index}, 'option1')" ${userAnswers[index] === 'option1' ? 'checked' : ''}>
+              ${q.option1}
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="question${q["no"]}" value="option2" onclick="saveAnswer(${index}, 'option2')" ${userAnswers[index] === 'option2' ? 'checked' : ''}>
+              ${q.option2}
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="question${q["no"]}" value="option3" onclick="saveAnswer(${index}, 'option3')" ${userAnswers[index] === 'option3' ? 'checked' : ''}>
+              ${q.option3}
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="question${q["no"]}" value="option4" onclick="saveAnswer(${index}, 'option4')" ${userAnswers[index] === 'option4' ? 'checked' : ''}>
+              ${q.option4}
+            </label>
+          </li>
+        </ul>
+      `;
+      container.appendChild(questionDiv);
+
+      // Toggle submit button visibility based on current question index
+      const submitButton = document.querySelector('.submit-btn');
+      if (index === 30 - 1) { // Assuming there are 30 questions
+        submitButton.style.display = 'block';
+      } else {
+        submitButton.style.display = 'none';
+      }
+    }
+
+    function loadTextboxes() {
+      const container = document.getElementById("textbox-container");
+
+      for (let i = 1; i <= 30; i++) {
+        const button = document.createElement("button");
+        button.type = "text";
+        button.id = "textbox" + i;
+        button.name = "textbox" + i;
+        button.textContent = i;
+        button.onclick = () => questionDisplay(i);
+        container.appendChild(button);
+      }
+    }
+
+    function updateExamName() {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const selectedExam = urlParams.get('exam');
+      document.getElementById('selectedExam').textContent = selectedExam;
+    }
+
+    async function openResultPage() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const country = urlParams.get('country');
+        const exam = urlParams.get('exam');
+        const token = localStorage.getItem('token')
+
+        // Send user answers and get correct answers
+        const response = await fetch('/submit_exam', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' , 
+                'Authorization' : token
+            },
+            body: JSON.stringify({ country, exam , userAnswers })
+        });
+
+        const data = await response.json();
+        // console.log(data)
+        localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+        localStorage.setItem('correctAnswers', JSON.stringify(data.correctAnswers));
+        localStorage.setItem('name' , JSON.stringify(data.name))
+
+        window.location.href = 'resultpage.html';
+    }
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+        if (currentQuestionIndex < 30 - 1) { // Assuming there are 20 questions
+            currentQuestionIndex++;
+            questionDisplay(currentQuestionIndex + 1);
+        }
+    });
+
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        questionDisplay(currentQuestionIndex + 1);
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      updateExamName();
+      loadTextboxes();
+    });
+
+    function preventBack() { window.history.forward(); }
+    setTimeout("preventBack()", 0);
+    window.onunload = function () { null };
+
+    function saveAnswer(questionIndex, option) {
+      userAnswers[questionIndex] = option;
+    }
+
+    function startTimer(duration, display) {
+      var timer = duration, minutes, seconds;
+      console.log(timer)
+      var interval = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+          clearInterval(interval);
+          openResultPage();
+        }
+      }, 1000);
+    }
+
+    window.onload = function () {
+      var time = 60 * 30,
+        display = document.querySelector('#time');
+      startTimer(time, display);
+    };
+
+  </script>
+</body>
+
+</html>

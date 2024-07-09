@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mock Paper Instructions</title>
+<link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+<div class="header">
+    <h1>Mock Paper Instructions</h1>
+</div>
+<div class="container instructions-container">
+    <h2>Instructions for <span id="examName"></span> Examination</h2>
+    <ol>
+        <li>Read each question carefully before answering.</li>
+        <li>Attempt all questions.</li>
+        <li>Manage your time effectively; the timer is displayed on the screen.</li>
+        <li>Navigate through questions using the "Next" and "Previous" buttons.</li>
+        <li>For MCQs, select the most appropriate answer. For numerical questions, enter the correct numerical value.</li>
+        <li>Review and change your answers anytime within the allotted time.</li>
+        <li>Mark questions for review if you want to revisit them later.</li>
+        <li>If you encounter any technical issues, raise your hand to notify the invigilator immediately.</li>
+        <li>Maintain silence and do not communicate with other candidates.</li>
+        <li>Use the provided rough sheets for any calculations and submit them before leaving.</li>
+        <li>Do not tamper with the computer or any other exam materials.</li>
+        <li>The system will automatically submit your test when the allotted time is over.</li>
+        <li>Follow the invigilator’s instructions on how to exit the exam hall.</li>
+    </ol>
+    <button onclick="startExam()">Start Exam</button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const country = urlParams.get('country');
+        const exam = urlParams.get('exam');
+        
+        document.getElementById('examName').textContent = `${exam} (${country})`;
+        
+        console.log("Country:", country);
+        console.log("Exam:", exam);
+    });
+
+    function startExam() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const country = urlParams.get('country');
+        const exam = urlParams.get('exam');
+        localStorage.setItem('country' , country)
+        localStorage.setItem('exam', exam)
+        const token = localStorage.getItem('token');
+        const id = 1
+        window.location.href = `mockPage.html?country=${encodeURIComponent(country)}&exam=${encodeURIComponent(exam)}&id=${encodeURIComponent(id)}`;
+        // const url = `mockPage.html?country=${encodeURIComponent(country)}&exam=${encodeURIComponent(exam)}&id=${encodeURIComponent(id)}`;
+    }
+
+        
+        
+</script>
+</body>
+</html>

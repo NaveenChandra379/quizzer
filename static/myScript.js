@@ -44,7 +44,7 @@ const examOptions = {
     'Canada': ['MCCEE', 'LMCC']
   }
 };
-// Variable to store the selected course name
+//Variable to store the selected course name
 let selectedCourseName = '';
 
 // Get the modal
@@ -123,3 +123,112 @@ document.getElementById('country').addEventListener('change', function() {
   const selectedCountry = this.value;
   populateExams(selectedCourseName, selectedCountry);
 });
+function submitForm() {
+  // Prevent default form submission
+  event.preventDefault();
+
+  // Get the selected country , token and exam values
+  const country = document.getElementById('country').value;
+  const exam = document.getElementById('exam').value;
+  const token = localStorage.getItem('token');
+
+  console.log("Selected Country:", country);
+  console.log("Selected Exam:", exam);
+
+
+  const url = `/exam?country=${encodeURIComponent(country)}&exam=${encodeURIComponent(exam)}`;
+
+  fetch(url, {
+    method :'POST',
+    headers : {
+        'Content-Type': 'application/json' , 
+        'Authorization': token
+    },
+    body : JSON.stringify({country ,  exam})
+})
+.then(response => {
+
+  if(response.status == 403) {
+    alert('Please login');
+    
+    return 403;
+  }
+
+  return response.json()
+})
+.then(data => {
+    console.log(data)
+
+    if(data == 403)
+    {
+      window.location.href = 'login';
+    }
+    else
+    {
+    window.location.href = `instructions.html?country=${encodeURIComponent(country)}&exam=${encodeURIComponent(exam)}`;
+    }
+
+})
+.catch(error => console.log(error))
+
+  return false; // Important to return false to prevent default form submission
+}
+
+function questionDisplayer() {
+
+  const country = document.getElementById('countrySelect').value;
+  const exam = document.getElementById('examSelect').value;
+
+  fetch(`/country=${country}/exam=${exam}` , {
+      method :'POST',
+      headers : {
+          'Content-Type': 'application/json'
+      },
+      body : JSON.stringify({country ,  exam})
+  })
+  .then(response = response.json())
+  .then(data => {
+      console.log(data)
+      window.location.href = `mockPage.html?country=${encodeURIComponent(country)}&exam=${encodeURIComponent(exam)}`;
+
+  })
+  .catch(error => console.log(error))
+  
+
+}
+
+
+
+function checkToken() {
+  const token = localStorage.getItem('token');
+  if (!token) {
+      return false;
+  }
+
+  
+  const payload = JSON.parse(atob(token.split('.')[1]));
+  const exp = payload.exp;
+  const currentTime = Math.floor(Date.now() / 1000);
+
+  if (currentTime >= exp) {
+      localStorage.removeItem('token');
+      alert('Session has expired. Please log in again.');
+      window.location.href = '/login';
+      return false;
+  }
+
+  return true;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  checkToken();
+});
+
+document.getElementById('logout').addEventListener('click', () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('userAnswers')
+  localStorage.removeItem('correctAnswers')
+  window.location.href = '/logout';
+});
+
+

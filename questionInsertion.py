@@ -7,7 +7,11 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 db = client['questionnoire']
 collection = db['question']
 
-correct_answers = list(collection.find({"country": country, "exam": exam}, {"_id": 0, "correct_option": 1}))
 
-print(correct_answers)
-    
+with open("JeeQuestions.json" , "r" , encoding= 'utf-8') as file:
+    data = json.load(file)
+
+if isinstance(data , list):
+    collection.insert_many(data)
+
+

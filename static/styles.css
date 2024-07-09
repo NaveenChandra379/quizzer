@@ -1,0 +1,879 @@
+
+body { font-family: Arial, sans-serif; }
+.navbar { background-color: #333; overflow: hidden; }
+.navbar a { float: left; display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none; }
+.navbar a:hover { background-color: #ddd; color: black; }
+.header { padding: 60px; text-align: center; background: #1abc9c; color: white; }
+.header h1 { font-size: 40px; }
+.course-container { display: flex; justify-content: space-around; padding: 20px; }
+.course { background-color: #f1f1f1; padding: 20px; width: 30%; }
+.course h2 { font-size: 30px; }
+.course p { font-size: 20px; }
+
+
+.close:hover,
+.close:focus {
+color: black;
+}
+#popupForm {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #000;
+  background-color: #fff;
+  padding: 20px;
+  z-index: 1000;
+}
+
+
+/* Style the modal */
+ .modal {
+  display: none;
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+ .modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+}
+
+/* The Close Button */
+.close {
+color: #aaa;
+float: right; /* Change from float: left to float: right */
+font-size: 28px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+/* Add your CSS styling here */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+}
+
+.header h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.course-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  flex-wrap: wrap; /* Allow courses to wrap on smaller screens */
+}
+
+.course {
+  background-color: #f1f1f1;
+  padding: 20px;
+  width: 45%; /* Adjusted width for better spacing */
+  margin-bottom: 20px; /* Add some space between courses */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.course h2 {
+  font-size: 24px; /* Decreased font size for headings */
+  margin-bottom: 10px; /* Add space between heading and paragraph */
+}
+
+.course p {
+  font-size: 18px; /* Decreased font size for paragraphs */
+  margin-bottom: 20px; /* Add space between paragraphs */
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px; /* Limit maximum width of modal */
+  border-radius: 5px; /* Add some border radius for better appearance */
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Styling for form elements */
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form select,
+form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+form input[type="submit"] {
+  background-color: #1abc9c;
+  color: white;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+  background-color: #16a085;
+}
+/* Add your CSS styling here */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+}
+
+.header h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.course-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  flex-wrap: wrap; /* Allow courses to wrap on smaller screens */
+}
+
+.course {
+  background-color: #f1f1f1;
+  padding: 20px;
+  width: 45%; /* Adjusted width for better spacing */
+  margin-bottom: 20px; /* Add some space between courses */
+  box-sizing: border-box; /* Include padding in width calculation */
+  border-radius: 5px; /* Add border radius for card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  transition: transform 0.3s ease; /* Add animation for hover effect */
+}
+
+.course:hover {
+  transform: translateY(-5px); /* Move card slightly up on hover */
+}
+
+.course h2 {
+  font-size: 24px; /* Decreased font size for headings */
+  margin-bottom: 10px; /* Add space between heading and paragraph */
+}
+
+.course p {
+  font-size: 18px; /* Decreased font size for paragraphs */
+  margin-bottom: 20px; /* Add space between paragraphs */
+}
+
+.course button {
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.course button:hover {
+  background-color: #16a085; /* Darker color on hover */
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px; /* Limit maximum width of modal */
+  border-radius: 5px; /* Add some border radius for better appearance */
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Styling for form elements */
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form select,
+form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+form input[type="submit"] {
+  background-color: #1abc9c;
+  color: white;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+  background-color: #16a085;
+}
+/* Add your CSS styling here header part */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.navbar a:hover {
+  background-color: #555; /* Darker color on hover */
+}
+
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.header h1 {
+  font-size: 40px;
+  margin-bottom: 20px; /* Increased space below heading */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.header p {
+  font-size: 20px;
+  margin-bottom: 40px; /* Increased space below paragraph */
+}
+
+.course-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.course {
+  background-color: #f1f1f1;
+  padding: 20px;
+  width: 45%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
+}
+
+.course:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+.course h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.course p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.course button {
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  padding: 12px 24px; /* Increased padding for better button size */
+  font-size: 16px;
+  border-radius: 25px; /* Rounded border for a smoother look */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth background color and transform transition */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+.course button:hover {
+  background-color: #16a085; /* Darker color on hover */
+  transform: translateY(-2px); /* Move button slightly up on hover */
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 5px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Styling for form elements */
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form select,
+form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+form input[type="submit"] {
+  background-color: #1abc9c;
+  color: white;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+  background-color: #16a085;
+}
+/* middel Part */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+
+
+.navbar button:hover {
+  background-color: #555;
+}
+
+.navbar a:hover {
+  background-color: #555; /* Darker color on hover */
+}
+
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.header h1 {
+  font-size: 40px;
+  margin-bottom: 20px; /* Increased space below heading */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.header p {
+  font-size: 20px;
+  margin-bottom: 40px; /* Increased space below paragraph */
+  color: #fff; /* Added color to paragraph */
+}
+
+.course-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.course {
+  background-color: #f1f1f1;
+  padding: 20px;
+  width: 45%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
+}
+
+.course:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+.course h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.course p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.course button {
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  padding: 12px 24px; /* Increased padding for better button size */
+  font-size: 16px;
+  border-radius: 25px; /* Rounded border for a smoother look */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth background color and transform transition */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+.course button:hover {
+  background-color: #16a085; /* Darker color on hover */
+  transform: translateY(-2px); /* Move button slightly up on hover */
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 5px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Styling for form elements */
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form select,
+form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+form input[type="submit"] {
+  background-color: #1abc9c;
+  color: white;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+  background-color: #16a085;
+}
+
+/* Styling for header content */
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header h1,
+.header p {
+  margin-bottom: 20px; /* Increased space below elements */
+}
+
+
+
+
+/*mockPaper*/
+
+
+/* Add your CSS styling here */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+  transition: background-color 0.3s ease;
+}
+
+.header {
+  text-align: center;
+  padding: 20px;
+  background-color: #1abc9c;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.questions,
+.answers {
+  width: 48%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+.questions h2,
+.answers h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #333;
+}
+
+/* Styling for responsive layout */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .questions,
+  .answers {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+/* Add your CSS styling here */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+  transition: background-color 0.3s ease;
+}
+
+.header {
+  text-align: center;
+  padding: 20px;
+  background-color: #1abc9c;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.questions,
+.answers {
+  width: 48%;
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: white;
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.questions:hover,
+.answers:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.questions h2,
+.answers h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #333;
+}
+
+/* Styling for responsive layout */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .questions,
+  .answers {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+.header {
+  text-align: center;
+  padding: 20px;
+  background-color: #1abc9c;
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* .instructions-container, .questions, .answers {
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #ccc;
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  margin: top 100px;
+} */
+
+.instructions-container h2, .questions h2, .answers h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.instructions-container ol {
+  padding-left: 20px;
+}
+
+.instructions-container li {
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #16a085;
+}
+
+#textbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#textbox-container button {
+  margin: 2px;
+  height: 40px;
+  width: 40px;
+  background-color: #fff;
+  border: 1px solid #8f8989;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#textbox-container button:hover {
+  background-color: #f1f1f1;
+  border-color: #5a5656;
+}
