@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline Exam</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      text-align: center;
+      padding: 20px;
+      background-color: #1abc9c;
+      color: white;
+    }
+    .container {
+      padding: 20px;
+    }
+    .question-container {
+      margin-bottom: 20px;
+    }
+    .question-container div {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+    .submit-btn {
+      display: block;
+      width: 20px;
+      margin: 20px auto;
+      font-size: 16px;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .submit-btn:hover {
+      background-color: #16a085;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Offline Exam: <span id="selectedExam"></span></h1>
+  </div>
+  <div class="container">
+    <div class="question-container" id="question-container"></div>
+  </div>
+  
+    <input type="submit" value="Submit" class="submit-btn" onclick="handleSubmit()" style = "width: 100px;">
+  
+  <script src="/static/offlineExam.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+[
+    {
+        "question": "Which HTML tag is used to define an internal style sheet?",
+        "option1": "<script>",
+        "option2": "<style>",
+        "option3": "<css>",
+        "option4": "<stylesheet>",
+        "correct_option": "option2",
+        "no": 1,
+        "exam": "HTML",
+        "country": "Frontend"
+    },
+    {
+        "question": "What does HTML stand for?",
+        "option1": "Hyper Text Markup Language",
+        "option2": "Hyperlinks and Text Markup Language",
+        "option3": "Home Tool Markup Language",
+        "option4": "Hyperlinking Text Marking Language",
+        "correct_option": "option1",
+        "no": 2,
+        "exam": "HTML",
+        "country": "Frontend"
+    },
+    {
+        "question": "Which is the correct HTML element for the largest heading?",
+        "option1": "<h6>",
+        "option2": "<heading>",
+        "option3": "<h1>",
+        "option4": "<head>",
+        "correct_option": "option3",
+        "no": 3,
+        "exam": "HTML",
+        "country": "Frontend"
+    },
+    {
+        "question": "What is the correct HTML element for inserting a line break?",
+        "option1": "<lb>",
+        "option2": "<br>",
+        "option3": "<break>",
+        "option4": "<line>",
+        "correct_option": "option2",
+        "no": 4,
+        "exam": "HTML",
+        "country": "Frontend"
+    },
+    {
+        "question": "Which of the following is the correct syntax to create a hyperlink in HTML?",
+        "option1": "<a href='www.example.com'>Example</a>",
+        "option2": "<link src='www.example.com'>Example</link>",
+        "option3": "<a src='www.example.com'>Example</a>",
+        "option4": "<a>www.example.com</a>",
+        "correct_option": "option1",
+        "no": 5,
+        "exam": "HTML",
+        "country": "Frontend"
+    },
+    {
+        "question": "Which attribute is used to specify a unique identifier for an HTML element?",
+        "option1": "class",
+        "option2": "id",
+        "option3": "name",
+        "option4": "key",
+        "correct_option": "option2",
+        "no": 6,
+        "exam": "HTML",
+        "country": "Frontend"
+    },
+    {
+        "question": "How can you make a list that lists the items with bullets?",
+        "option1": "<list>",
+        "option2": "<ul>",
+        "option3": "<ol>",
+        "option4": "<li>",
+        "correct_option": "option2",
+        "no": 7,
+        "exam": "HTML",
+        "country": "Frontend"
+    },
+    {
+        "question": "What is the correct HTML element for playing audio files?",
+        "option1": "<audio>",
+        "option2": "<sound>",
+        "option3": "<music>",
+        "option4": "<play>",
+        "correct_option": "option1",
+        "no": 8,
+        "exam": "HTML",
+        "country": "Frontend"
+    },
+    {
+        "question": "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+        "option1": "alt",
+        "option2": "src",
+        "option3": "title",
+        "option4": "href",
+        "correct_option": "option1",
+        "no": 9,
+        "exam": "HTML",
+        "country": "Frontend"
+    },
+    {
+        "question": "How do you create a checkbox in HTML?",
+        "option1": "<input type='check'>",
+        "option2": "<input type='checkbox'>",
+        "option3": "<checkbox>",
+        "option4": "<input type='button'>",
+        "correct_option": "option2",
+        "no": 10,
+        "exam": "HTML",
+        "country": "Frontend"
+    }
+]

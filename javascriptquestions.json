@@ -1,0 +1,112 @@
+[
+    {
+        "question": "Which of the following is the correct syntax to print a message in the console in JavaScript?",
+        "option1": "console.print('Hello World');",
+        "option2": "print('Hello World');",
+        "option3": "log.console('Hello World');",
+        "option4": "console.log('Hello World');",
+        "correct_option": "option4",
+        "no": 21,
+        "exam": "JavaScript",
+        "country": "Language"
+    },
+    {
+        "question": "How do you declare a variable in JavaScript?",
+        "option1": "var myVar;",
+        "option2": "v myVar;",
+        "option3": "variable myVar;",
+        "option4": "let myVar;",
+        "correct_option": "option1",
+        "no": 22,
+        "exam": "JavaScript",
+        "country": "Language"
+    },
+    {
+        "question": "Which method is used to parse a string to an integer in JavaScript?",
+        "option1": "parseInt()",
+        "option2": "parseFloat()",
+        "option3": "toInteger()",
+        "option4": "parse()",
+        "correct_option": "option1",
+        "no": 23,
+        "exam": "JavaScript",
+        "country": "Language"
+    },
+    {
+        "question": "Which built-in method combines the text of two strings and returns a new string?",
+        "option1": "append()",
+        "option2": "concat()",
+        "option3": "attach()",
+        "option4": "combine()",
+        "correct_option": "option2",
+        "no": 24,
+        "exam": "JavaScript",
+        "country": "Language"
+    },
+    {
+        "question": "How do you write a conditional statement in JavaScript?",
+        "option1": "if i = 5 then",
+        "option2": "if (i == 5)",
+        "option3": "if i == 5 then",
+        "option4": "if (i = 5)",
+        "correct_option": "option2",
+        "no": 25,
+        "exam": "JavaScript",
+        "country": "Language"
+    },
+    {
+        "question": "Which operator is used to assign a value to a variable?",
+        "option1": "-",
+        "option2": "*",
+        "option3": "=",
+        "option4": "==",
+        "correct_option": "option3",
+        "no": 26,
+        "exam": "JavaScript",
+        "country": "Language"
+    },
+    {
+        "question": "What is the correct way to write a JavaScript array?",
+        "option1": "var colors = 'red', 'green', 'blue';",
+        "option2": "var colors = (1:'red', 2:'green', 3:'blue');",
+        "option3": "var colors = ['red', 'green', 'blue'];",
+        "option4": "var colors = 1 = ('red'), 2 = ('green'), 3 = ('blue');",
+        "correct_option": "option3",
+        "no": 27,
+        "exam": "JavaScript",
+        "country": "Language"
+    },
+    {
+        "question": "How do you find the number with the highest value of x and y?",
+        "option1": "ceil(x, y)",
+        "option2": "Math.ceil(x, y)",
+        "option3": "top(x, y)",
+        "option4": "Math.max(x, y)",
+        "correct_option": "option4",
+        "no": 28,
+        "exam": "JavaScript",
+        "country": "Language"
+    },
+    {
+        "question": "Which event occurs when the user clicks on an HTML element?",
+        "option1": "onmouseclick",
+        "option2": "onmouseover",
+        "option3": "onchange",
+        "option4": "onclick",
+        "correct_option": "option4",
+        "no": 29,
+        "exam": "JavaScript",
+        "country": "Language"
+    },
+    {
+        "question": "How do you declare a JavaScript function?",
+        "option1": "function myFunction()",
+        "option2": "declare myFunction()",
+        "option3": "create myFunction()",
+        "option4": "function:myFunction()",
+        "correct_option": "option1",
+        "no": 30,
+        "exam": "JavaScript",
+        "country": "Language"
+    }
+]

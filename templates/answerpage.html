@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline Exam Answers</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      text-align: center;
+      padding: 20px;
+      background-color: #1abc9c;
+      color: white;
+    }
+    .container {
+      padding: 20px;
+    }
+    .answer-container {
+      margin-bottom: 20px;
+    }
+    .marks-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .marks-container input {
+      width: 50px;
+      padding: 5px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .submit-btn {
+      display: block;
+      margin: 20px auto;
+      font-size: 16px;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .submit-btn:hover {
+      background-color: #16a085;
+    }
+    .total-score {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    .home-btn {
+      display: block;
+      margin: 20px auto;
+      font-size: 16px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .home-btn:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Offline Exam Answers: <span id="selectedExam"></span></h1>
+  </div>
+  <div class="container">
+    <form id="marksForm" method="POST">
+      <div class="answer-container" id="answer-container"></div>
+      <div class="total-score" id="total-score">Total Score: 0</div>
+      <input type="button" value="Calculate Total Marks" class="submit-btn" onclick="calculateAndSubmit()">
+    </form>
+    <button class="home-btn" onclick="goHome()">Go to Home Page</button>
+  </div>
+  <script src="/static/answerPage.js"></script>
+</body>
+</html>
