@@ -325,9 +325,94 @@ def result():
 @app.route('/certificate.html')
 def certificate():
     return render_template('certificate.html')
-      
+
+
+#offline test
+@app.route('/fetch_offline_questions' , methods = ['POST'])
+def offline_questions():
+    country = request.args.get('country')
+    exam = request.args.get('exam')
 
     
+    try:
+        db = client['questionnoire']
+        collection = db['offlineexam']
+        
+        questions = list(collection.find({'country': country, 'exam': exam}))
+        
+        json_questions = json.loads(json_util.dumps(questions))
+
+        # print(json_questions)
+
+        return jsonify(json_questions)
+    except Exception as e:
+        return e
+    
+
+@app.route('/offlineExam.html' , methods = ['GET'])
+def offlineExam():
+    return render_template('offlineExam.html')
+
+@app.route('/submit_offline_exam' , methods = ['GET'])
+def submit_offline_exam():
+    return render_template('answerpage.html')
+
+@app.route('/fetch_offline_answers' , methods = ['POST'])
+def fetch_offline_answers():
+    country = request.args.get('country')
+    exam = request.args.get('exam')
+    try:
+        db = client['questionnoire']
+        collection = db['offlineexam']
+        
+        answers = list(collection.find({'country': country, 'exam': exam}))
+        
+        json_answers = json.loads(json_util.dumps(answers))
+
+        # print(json_answers)
+
+        return jsonify(json_answers)
+    except Exception as e:
+        return e
+    
+@app.route('/submit_offline_marks' , methods =['POST'])
+def submit_offline_marks():
+    try:
+        data = request.get_json()
+        country = data.get('country')
+        token = request.headers.get('Authorization')
+        decoded_token = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+        username = decoded_token['username']
+        name = user_collection.find_one({"username":username},{"_id":0 , "name":1})
+        name = name['name']
+        exam = data.get('exam')
+        score = data.get('totalMarks')
+        total_questions = data.get('total_questions')
+
+    except Exception as e:
+        return e
+    
+    result = {
+            "exam": exam,
+            "country": country,
+            "score": score,
+            "total_questions": total_questions,
+            "percentage": (score / total_questions) * 100
+        }
+
+    user_collection.update_one(
+        {'username':username} ,
+        {'$push' : {'results' : result}}
+                            )
+    
+    return jsonify(score)
+    
+    
+
+
+    
+    
+
 
 if __name__ == '__main__':
     app.run(debug=True)

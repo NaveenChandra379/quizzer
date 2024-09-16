@@ -19,7 +19,7 @@
       color: white;
     }
 
-    .container {
+    .container {  
       display: flex;
       justify-content: space-between;
       padding: 20px;
@@ -145,15 +145,15 @@
       const url = `mockPage.html?country=${encodeURIComponent(country)}&exam=${encodeURIComponent(exam)}&id=${encodeURIComponent(id)}`;
 
 
-    fetch(url , {
-            method :'POST',
-            headers : {
-            'Content-Type': 'application/json' , 
-            'Authorization': token
-             },
-            body : JSON.stringify({country ,  exam , id})
+      fetch(url , {
+              method :'POST',
+              headers : {
+              'Content-Type': 'application/json' , 
+              'Authorization': token
+              },
+              body : JSON.stringify({country ,  exam , id})
 
-        })
+          })
         .then(response => response.json())
         .then(data => {
             // console.log(data)

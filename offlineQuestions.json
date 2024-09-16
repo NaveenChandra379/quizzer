@@ -1,0 +1,98 @@
+[
+  {
+    "question": "What is Newton's First Law of Motion?",
+    "answer": "Newton's First Law states that an object will remain at rest or in uniform motion unless acted upon by a net external force.",
+    "country": "India",
+    "exam": "JEE",
+    "no": "1",
+    "marks": "1"
+  },
+  {
+    "question": "Explain the concept of work done in physics.",
+    "answer": "Work done is defined as the product of the force applied to an object and the distance over which the force is applied, in the direction of the force.",
+    "country": "India",
+    "exam": "JEE",
+    "no": "2",
+    "marks": "1"
+  },
+  {
+    "question": "What is the principle of conservation of energy?",
+    "answer": "The principle of conservation of energy states that energy cannot be created or destroyed, only transformed from one form to another.",
+    "country": "India",
+    "exam": "JEE",
+    "no": "3",
+    "marks": "2"
+  },
+  {
+    "question": "Describe the structure of an atom.",
+    "answer": "An atom consists of a nucleus containing protons and neutrons, surrounded by electrons that orbit the nucleus in various energy levels.",
+    "country": "India",
+    "exam": "JEE",
+    "no": "4",
+    "marks": "2"
+  },
+  {
+    "question": "What is Ohm's Law?",
+    "answer": "Ohm's Law states that the current through a conductor between two points is directly proportional to the voltage across the two points, expressed as V = IR.",
+    "country": "India",
+    "exam": "JEE",
+    "no": "5",
+    "marks": "2"
+  },
+  {
+    "question": "Explain the difference between scalar and vector quantities.",
+    "answer": "Scalar quantities have only magnitude, such as temperature or mass, while vector quantities have both magnitude and direction, such as velocity or force.",
+    "country": "India",
+    "exam": "JEE",
+    "no": "6",
+    "marks": "3"
+  },
+  {
+    "question": "What is the law of conservation of momentum?",
+    "answer": "The law of conservation of momentum states that the total momentum of a closed system remains constant if no external forces act on it.",
+    "country": "India",
+    "exam": "JEE",
+    "no": "7",
+    "marks": "3"
+  },
+  {
+    "question": "Define kinetic energy.",
+    "answer": "Kinetic energy is the energy possessed by an object due to its motion, calculated as KE = 1/2 mv^2, where m is mass and v is velocity.",
+    "country": "India",
+    "exam": "JEE",
+    "no": "8",
+    "marks": "3"
+  },
+  {
+    "question": "What is Coulomb's Law?",
+    "answer": "Coulomb's Law states that the force between two charged particles is directly proportional to the product of their charges and inversely proportional to the square of the distance between them.",
+    "country": "India",
+    "exam": "JEE",
+    "no": "9",
+    "marks": "5"
+  },
+  {
+    "question": "Explain the concept of electric field.",
+    "answer": "An electric field is a region around a charged particle where other charges experience a force. It is defined as the force per unit charge at a point in space.",
+    "country": "India",
+    "exam": "JEE",
+    "no": "10",
+    "marks": "5"
+  },
+  {
+    "question": "What is Faraday's Law of Electromagnetic Induction?",
+    "answer": "Faraday's Law states that a change in the magnetic flux through a circuit induces an electromotive force (EMF) in the circuit, proportional to the rate of change of flux.",
+    "country": "India",
+    "exam": "JEE",
+    "no": "11",
+    "marks": "5"
+  },
+  {
+    "question": "Describe the process of nuclear fusion.",
+    "answer": "Nuclear fusion is the process by which two light atomic nuclei combine to form a heavier nucleus, releasing energy in the process.",
+    "country": "India",
+    "exam": "JEE",
+    "no": "12",
+    "marks": "5"
+  }
+]

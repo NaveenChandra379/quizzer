@@ -319,7 +319,7 @@ form label {
 
 form select,
 form input[type="submit"] {
-  width: 100%;
+  
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -477,7 +477,7 @@ form label {
 
 form select,
 form input[type="submit"] {
-  width: 100%;
+  
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -598,7 +598,7 @@ body {
 }
 
 /* Modal styles */
-.modal {
+.modal  {
   display: none;
   position: fixed;
   z-index: 1;
@@ -642,7 +642,7 @@ form label {
 
 form select,
 form input[type="submit"] {
-  width: 100%;
+  /* width: 100%; */
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;

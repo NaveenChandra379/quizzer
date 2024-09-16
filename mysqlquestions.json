@@ -1,0 +1,112 @@
+[
+    {
+        "question": "Which of the following is used to create a database in MySQL?",
+        "option1": "CREATE DATABASE database_name;",
+        "option2": "MAKE DATABASE database_name;",
+        "option3": "DATABASE CREATE database_name;",
+        "option4": "DATABASE MAKE database_name;",
+        "correct_option": "option1",
+        "no": 1,
+        "exam": "MySQL",
+        "country": "DBMS"
+    },
+    {
+        "question": "Which command is used to view the structure of a table in MySQL?",
+        "option1": "DESCRIBE table_name;",
+        "option2": "SHOW table_name;",
+        "option3": "VIEW table_name;",
+        "option4": "EXPLAIN table_name;",
+        "correct_option": "option1",
+        "no": 2,
+        "exam": "MySQL",
+        "country": "DBMS"
+    },
+    {
+        "question": "How do you retrieve all columns from a table named 'students'?",
+        "option1": "SELECT * FROM students;",
+        "option2": "RETRIEVE * FROM students;",
+        "option3": "GET * FROM students;",
+        "option4": "FETCH * FROM students;",
+        "correct_option": "option1",
+        "no": 3,
+        "exam": "MySQL",
+        "country": "DBMS"
+    },
+    {
+        "question": "Which SQL statement is used to update data in a database?",
+        "option1": "MODIFY",
+        "option2": "UPDATE",
+        "option3": "CHANGE",
+        "option4": "ALTER",
+        "correct_option": "option2",
+        "no": 4,
+        "exam": "MySQL",
+        "country": "DBMS"
+    },
+    {
+        "question": "Which SQL clause is used to filter the result set based on a condition?",
+        "option1": "WHERE",
+        "option2": "IF",
+        "option3": "FILTER",
+        "option4": "CONDITION",
+        "correct_option": "option1",
+        "no": 5,
+        "exam": "MySQL",
+        "country": "DBMS"
+    },
+    {
+        "question": "What does the acronym 'DDL' stand for in MySQL?",
+        "option1": "Data Derivation Language",
+        "option2": "Data Definition Language",
+        "option3": "Data Description Language",
+        "option4": "Data Distribution Language",
+        "correct_option": "option2",
+        "no": 6,
+        "exam": "MySQL",
+        "country": "DBMS"
+    },
+    {
+        "question": "Which MySQL function is used to get the current date?",
+        "option1": "CURRENT_DATE()",
+        "option2": "GETDATE()",
+        "option3": "NOW()",
+        "option4": "TODAY()",
+        "correct_option": "option1",
+        "no": 7,
+        "exam": "MySQL",
+        "country": "DBMS"
+    },
+    {
+        "question": "How do you add a new column named 'email' to an existing table 'users'?",
+        "option1": "ADD COLUMN email TO users;",
+        "option2": "ALTER TABLE users ADD email;",
+        "option3": "MODIFY TABLE users ADD COLUMN email;",
+        "option4": "ALTER users ADD COLUMN email;",
+        "correct_option": "option2",
+        "no": 8,
+        "exam": "MySQL",
+        "country": "DBMS"
+    },
+    {
+        "question": "Which command is used to remove all records from a table, including all spaces allocated for the records?",
+        "option1": "DELETE",
+        "option2": "TRUNCATE",
+        "option3": "DROP",
+        "option4": "REMOVE",
+        "correct_option": "option2",
+        "no": 9,
+        "exam": "MySQL",
+        "country": "DBMS"
+    },
+    {
+        "question": "Which MySQL statement is used to create a new table?",
+        "option1": "MAKE TABLE",
+        "option2": "CREATE TABLE",
+        "option3": "NEW TABLE",
+        "option4": "ADD TABLE",
+        "correct_option": "option2",
+        "no": 10,
+        "exam": "MySQL",
+        "country": "DBMS"
+    }
+]

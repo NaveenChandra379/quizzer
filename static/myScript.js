@@ -35,13 +35,21 @@ const examOptions = {
   'Medical': {
     'USA': ['USMLE', 'NBDE'],
     'UK': ['PLAB', 'MRCP'],
-    'India': ['NEET-PG', 'AIIMS-PG'],
+    'India': ['NEET', 'AIIMS'],
     'Germany': ['Approbation', 'GK'],
     'Japan': ['JMLE', 'JHLE'],
     'France': ['ECN', 'ENS'],
     'Australia': ['AMC', 'ASC'],
     'Brazil': ['USMLE', 'NBDE'],
     'Canada': ['MCCEE', 'LMCC']
+  } , 
+  'Offline Test':{
+    'India' : ['JEE']
+  } ,
+  'Skill Test' : {
+    'DBMS':['MYSQL'] , 
+    'Frontend':['HTML'] ,
+    'Language':['JavaScript']
   }
 };
 //Variable to store the selected course name
@@ -56,13 +64,26 @@ let btns = document.querySelectorAll(".course button");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
+const countryLabel = document.querySelector('label[for="country"]');
+
 // When the user clicks a button, open the modal 
 btns.forEach(function(btn, index) {
   btn.onclick = function() {
+    const courses = ['Engineering', 'Management', 'Language', 'Medical' , 'Offline Test' , 'Skill Test'];
+    
     modal.style.display = "block";
-    const courses = ['Engineering', 'Management', 'Language', 'Medical'];
     selectedCourseName = courses[index];
-    populateCountries(selectedCourseName);
+    if (selectedCourseName === 'Skill Test') {
+      console.log(countryLabel.textContent);
+      countryLabel.textContent = 'Domain:'; 
+      
+    } 
+    
+      populateCountries(selectedCourseName);
+      
+      console.log(countryLabel.textContent);
+    
+    
   }
 });
 
@@ -80,6 +101,7 @@ window.onclick = function(event) {
 
 // Function to populate country dropdown based on selected course
 function populateCountries(course) {
+  
   const countrySelect = document.getElementById('country');
   const examSelect = document.getElementById('exam');
   
@@ -163,10 +185,15 @@ function submitForm() {
     {
       window.location.href = 'login';
     }
-    else
+    else if(selectedCourseName === 'Offline Test') 
+    {
+      window.location.href = `offlineExam.html?country=${encodeURIComponent(country)}&exam=${encodeURIComponent(exam)}`;
+    }
+    else 
     {
     window.location.href = `instructions.html?country=${encodeURIComponent(country)}&exam=${encodeURIComponent(exam)}`;
     }
+    
 
 })
 .catch(error => console.log(error))
